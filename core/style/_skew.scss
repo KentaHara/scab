@@ -1,0 +1,51 @@
+//////////////////////////////////////////////////////
+// 対象のdivの上部を斜めに切り落とす処理
+//
+// <div class="XXXX-rightup-wrapper">
+//     <div class="XXXX-rightup-mask">
+//        <div class="XXXX-rightup-container">
+//        </div>
+//    </div>
+// </div>
+//
+//////////////////////////////////////////////////////
+
+$skew-rightup-deg: -1deg;
+$skew-leftup-deg: 1deg;
+
+@mixin skew-rightup($height, $width) {
+  &-rightup {
+    @include skew-util($height, $width, $skew-rightup-deg);
+  }
+}
+@mixin skew-leftup($height, $width) {
+  &-leftup {
+    @include skew-util($height, $width, $skew-rightup-deg);
+  }
+}
+
+@mixin skew-util($height, $width, $deg) {
+  $diff: tan($deg) * -1 * $width;
+  &-wrapper {
+    position: absolute;
+    width: $width;
+    height: $height;
+    overflow: hidden;
+    transform: skewY($deg);
+    transform-origin: top right;
+  }
+  &-mask {
+    position: absolute;
+    width: $width;
+    height: $height;
+    overflow: hidden;
+    transform: skewY($deg * -1) translateY($diff * -1);
+  }
+  &-container {
+    position: absolute;
+    width: $width;
+    height: $height;
+    transform: translateY($diff * -1);
+    transform-origin: top right;
+  }
+}

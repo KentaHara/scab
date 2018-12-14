@@ -1,0 +1,32 @@
+@mixin padding($padding) {
+  @each $m in top,bottom,left,right {
+    @if map-has-key($padding, $m) {
+      padding-#{$m}: map-get($padding, $m);
+    }
+  }
+}
+
+@mixin padding-tl($m1, $m2) { @include padding((top: $m1, left: $m2));}
+@mixin padding-lt($m1, $m2) { @include padding((top: $m2, left: $m1,));}
+@mixin padding-tr($m1, $m2) { @include padding((top: $m1, right: $m2,));}
+@mixin padding-rt($m1, $m2) { @include padding((top: $m2, right: $m1,));}
+@mixin padding-tb($m1, $m2) { @include padding((top: $m1, bottom: $m2,));}
+@mixin padding-bt($m1, $m2) { @include padding((top: $m2, bottom: $m1,));}
+@mixin padding-bl($m1, $m2) { @include padding((bottom: $m1, left: $m2,));}
+@mixin padding-lb($m1, $m2) { @include padding((bottom: $m2, left: $m1,));}
+@mixin padding-br($m1, $m2) { @include padding((bottom: $m1, right: $m2,));}
+@mixin padding-rb($m1, $m2) { @include padding((bottom: $m2, right: $m1,));}
+@mixin padding-lr($m1, $m2) { @include padding((left: $m1, right: $m2,));}
+@mixin padding-rl($m1, $m2) { @include padding((left: $m2, right: $m1,));}
+@mixin p-tl($m1, $m2) { @include padding((top: $m1, left: $m2));}
+@mixin p-lt($m1, $m2) { @include padding((top: $m2, left: $m1,));}
+@mixin p-tr($m1, $m2) { @include padding((top: $m1, right: $m2,));}
+@mixin p-rt($m1, $m2) { @include padding((top: $m2, right: $m1,));}
+@mixin p-tb($m1, $m2) { @include padding((top: $m1, bottom: $m2,));}
+@mixin p-bt($m1, $m2) { @include padding((top: $m2, bottom: $m1,));}
+@mixin p-bl($m1, $m2) { @include padding((bottom: $m1, left: $m2,));}
+@mixin p-lb($m1, $m2) { @include padding((bottom: $m2, left: $m1,));}
+@mixin p-br($m1, $m2) { @include padding((bottom: $m1, right: $m2,));}
+@mixin p-rb($m1, $m2) { @include padding((bottom: $m2, right: $m1,));}
+@mixin p-lr($m1, $m2) { @include padding((left: $m1, right: $m2,));}
+@mixin p-rl($m1, $m2) { @include padding((left: $m2, right: $m1,));}

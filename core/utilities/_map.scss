@@ -1,0 +1,15 @@
+@function map-set($map, $key, $value) {
+  @return map-merge($map, ($key: $value));
+}
+
+/// @alias map-get-to
+@function map-get-ternary-operation($map, $key, $default) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+  @return $default;
+}
+
+@function map-get-to($map, $key, $default) {
+  @return map-get-ternary-operation($map, $key, $default);
+}
