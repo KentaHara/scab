@@ -1,0 +1,26 @@
+////////////////////////////////////////////
+// 吹き出しを作成するためのスタイル
+////////////////////////////////////////////
+
+// 角丸の下方向吹き出し
+@mixin ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height ) {
+  position: relative;
+  @include size-wh($width, $height);
+  background-color: $color;
+  &:before {
+    content: "";
+    position: relative;
+    top: $height + $arrow-height;
+    // 横幅
+    border: $arrow-width / 2 solid transparent;
+    // 縦幅
+    border-top: $arrow-height * 1.1 solid $color;
+    left: $width / 2 - $arrow-width / 2;
+  }
+}
+
+// 角丸の下方向吹き出し
+@mixin ballon-bottom-radius( $color , $width, $height, $arrow-width, $arrow-height ) {
+  border-radius: $height / 2;
+  @mixin ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height )
+}

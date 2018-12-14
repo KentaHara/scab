@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+////////////////////////////////////////////
+// position
+////////////////////////////////////////////
+@mixin pos-all($top, $right, $bottom, $left) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+@mixin pos-tl($top, $left) {
+  top: $top;
+  left: $left;
+}
+
+// top x right
+@mixin pos-tr($top, $right) {
+  top: $top;
+  right: $right;
+}
+
+// bottom x left
+@mixin pos-bl($bottom, $left) {
+  bottom: $bottom;
+  left: $left;
+}
+
+// bottom x right
+@mixin pos-br($bottom, $right) {
+  bottom: $bottom;
+  right: $right;
+}
+
+// left x top
+@mixin pos-lt($left, $top) {
+  @include pos-tl($top, $left);
+}
+
+// right x top
+@mixin pos-rt($right, $top) {
+  @include pos-tr($top, $right);
+}
+
+// left x bottom
+@mixin pos-lb($left, $bottom) {
+  @include pos-bl($bottom, $left);
+}
+
+// right x bottom
+@mixin pos-rb($right, $bottom) {
+  @include pos-br($bottom, $right);
+}

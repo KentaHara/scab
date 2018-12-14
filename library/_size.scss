@@ -1,0 +1,10 @@
+// width x height
+@mixin size-wh($width, $height) {
+	width: $width;
+	height: $height;
+}
+
+@mixin size-rect($size) {
+	width: $size;
+	height: $size;
+}
