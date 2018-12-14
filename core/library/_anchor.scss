@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+////////////////////////////////////////////
+// anchorタグの全ての色を設定
+////////////////////////////////////////////
+@mixin a-tag-all-color( $color ) {
+  a:link { color: $color; text-decoration:none;}
+  a:visited { color: $color; }
+  a:hover { color: $color; }
+  a:active { color: $color; }
+}
+// alias
+@mixin a-colors( $color ) {
+  @include a-tag-all-color( $color );
+}
+
+////////////////////////////////////////////
+// 親の領域全てにanchorタグの領域を持たせる
+////////////////////////////////////////////
+@mixin a-tag-parent-element-cover {
+  a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-indent:-999px;
+  }
+}
+// alias
+@mixin a-cover {
+  @include a-tag-parent-element-cover;
+}

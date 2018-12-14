@@ -1,0 +1,32 @@
+@mixin margin($margin) {
+  @each $m in top,bottom,left,right {
+    @if map-has-key($margin, $m) {
+      margin-#{$m}: map-get($margin, $m);
+    }
+  }
+}
+
+@mixin margin-tl($m1, $m2) { @include margin((top: $m1, left: $m2));}
+@mixin margin-lt($m1, $m2) { @include margin((top: $m2, left: $m1,));}
+@mixin margin-tr($m1, $m2) { @include margin((top: $m1, right: $m2,));}
+@mixin margin-rt($m1, $m2) { @include margin((top: $m2, right: $m1,));}
+@mixin margin-tb($m1, $m2) { @include margin((top: $m1, bottom: $m2,));}
+@mixin margin-bt($m1, $m2) { @include margin((top: $m2, bottom: $m1,));}
+@mixin margin-bl($m1, $m2) { @include margin((bottom: $m1, left: $m2,));}
+@mixin margin-lb($m1, $m2) { @include margin((bottom: $m2, left: $m1,));}
+@mixin margin-br($m1, $m2) { @include margin((bottom: $m1, right: $m2,));}
+@mixin margin-rb($m1, $m2) { @include margin((bottom: $m2, right: $m1,));}
+@mixin margin-lr($m1, $m2) { @include margin((left: $m1, right: $m2,));}
+@mixin margin-rl($m1, $m2) { @include margin((left: $m2, right: $m1,));}
+@mixin m-tl($m1, $m2) { @include margin((top: $m1, left: $m2));}
+@mixin m-lt($m1, $m2) { @include margin((top: $m2, left: $m1,));}
+@mixin m-tr($m1, $m2) { @include margin((top: $m1, right: $m2,));}
+@mixin m-rt($m1, $m2) { @include margin((top: $m2, right: $m1,));}
+@mixin m-tb($m1, $m2) { @include margin((top: $m1, bottom: $m2,));}
+@mixin m-bt($m1, $m2) { @include margin((top: $m2, bottom: $m1,));}
+@mixin m-bl($m1, $m2) { @include margin((bottom: $m1, left: $m2,));}
+@mixin m-lb($m1, $m2) { @include margin((bottom: $m2, left: $m1,));}
+@mixin m-br($m1, $m2) { @include margin((bottom: $m1, right: $m2,));}
+@mixin m-rb($m1, $m2) { @include margin((bottom: $m2, right: $m1,));}
+@mixin m-lr($m1, $m2) { @include margin((left: $m1, right: $m2,));}
+@mixin m-rl($m1, $m2) { @include margin((left: $m2, right: $m1,));}

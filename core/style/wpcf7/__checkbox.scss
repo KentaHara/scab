@@ -1,0 +1,79 @@
+/// @example
+/// $options: (
+///   span: (
+///     height: 25px,
+///     font-size: 16px,
+///     distance-to-checkbox: 5px,
+///     distance-to-other: 5px,
+///   ),
+///   checkbox: (
+///     size: 14px,
+///     border: solid #000 1px,
+///   ),
+///   check: (
+///     short-border-length: 6px
+///     long-border-length: 14px
+///     border: solid #fa5504 1px,
+///   )
+/// );
+/// @include style-wpcf7-checkbox($options);
+@mixin style-wpcf7-checkbox( $options: () ) {
+  // span options
+  $span-options: map-get-to($options, span, ());
+  $span-height: map-get-to($span-options, height, 25px);
+  $span-font-size: map-get-to($span-options, font-size, 16px);
+  $span-distance-to-checkbox: map-get-to($span-options, distance-to-checkbox, 5px);
+  $span-distance-to-other: map-get-to($span-options, distance-to-other, 5px);
+
+  // checkbox options
+  $checkbox-options: map-get-to($options, checkbox, ());
+  $checkbox-size: map-get-to($checkbox-options, size, 14px);
+  $checkbox-border: map-get-to($checkbox-options, border, solid #000 1px);
+  $checkbox-top: (($span-height / 2) - ($checkbox-size / 2));
+  $checkbox-left: $checkbox-size;
+
+  // check options
+  $check-options: map-get-to($options, check, ());
+  $check-short-border-length: map-get-to($check-options, short-border-length, 6px);
+  $check-long-border-length: map-get-to($check-options, long-border-length, 14px);
+  $check-border: map-get-to($check-options, border, solid #fa5504 2px);
+  $check-top: (($checkbox-size - $check-long-border-length) / 2) + $checkbox-top;
+  $check-left: ( $check-short-border-length * 2 ) + ( $checkbox-size / 2 );
+
+  position: relative;
+  span {
+    display: inline-block;
+    line-height: $span-height;
+    font-size: $span-font-size;
+  }
+  label {
+    padding-left: ($checkbox-size + $span-distance-to-checkbox);
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+  input[type=checkbox] + span:before, input[type=checkbox] + input[type=hidden] + span:before {
+    content: "";
+    position: absolute;
+    @include pos-tl($checkbox-top, $checkbox-left);
+    @include size-square($checkbox-size);
+    border: $checkbox-border;
+  }
+
+  input[type=checkbox]:checked + span:after , input[type=checkbox]:checked + input[type=hidden] + span:after{
+    content: "";
+    position: absolute;
+    @include pos-tl($check-top, $check-left);
+    // check-short
+    width: $check-short-border-length;
+    border-bottom: $check-border;
+    // check-long
+    height: $check-long-border-length;
+    border-right: $check-border;
+    // center center
+    transform-origin: ($check-short-border-length / 2) ($check-long-border-length / 2);
+    // 上へのずらし -> 回転
+    transform: translateY(-1 * ($checkbox-size / 3)) rotate(35deg);
+  }
+}

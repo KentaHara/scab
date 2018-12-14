@@ -1,0 +1,119 @@
+// $options: (
+//   ratio:  [number] 1.1 .. size ratio when hover
+//   width:  [size]   20px .. width when hover
+//   height: [size]   20px .. height when hover
+// )
+@mixin animation-hover-extension($width, $height, $options: ()) {
+
+  // setting for hover width/height
+  $hover-width:  $width * 1.5;
+  $hover-height: $height * 1.5;
+  @if map-has-key($options, ratio) {
+    $hover-width:  $width * map-get($options, ratio);
+    $hover-height: $height * map-get($options, ratio);
+  } @else if map-has-key($options, width) {
+    @if map-has-key($options, height) {
+      $hover-width:  map-get($options, width);
+      $hover-height: map-get($options, height);
+    }
+  }
+
+  // setting for paddings
+  $max-width:  max($width, $hover-width);
+  $min-width:  min($width, $hover-width);
+  $max-height: max($height, $hover-height);
+  $min-height: min($height, $hover-height);
+
+  $padding-left-right: (($max-width - $min-width) / 2);
+  $padding-top-bottom: (($max-height - $min-height) / 2);
+
+  $padding: (
+    top: $padding-top-bottom,
+    bottom: $padding-top-bottom,
+    left: $padding-left-right,
+    right: $padding-left-right,
+  );
+  $hover-padding: (
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  );
+  @if $width > $hover-width {
+    $padding: map-merge($padding, (left: 0, right: 0));
+    $hover-padding: map-merge($hover-padding, (left: $padding-left-right, right: $padding-left-right));
+  }
+  @if $height > $hover-height {
+    $padding: map-merge($padding, (top: 0, bottom: 0));
+    $hover-padding: map-merge($hover-padding, (top: $padding-top-bottom, bottom: $padding-top-bottom));
+  }
+
+  // setting parent element
+  position: relative;
+  width: $max-width - map-get($padding, left) - map-get($padding, right);
+  height: $max-height - map-get($padding, top) - map-get($padding, bottom);
+  @include padding($padding);
+  &:hover {
+    width: $max-width - map-get($hover-padding, left) - map-get($hover-padding, right);
+    height: $max-height - map-get($hover-padding, top) - map-get($hover-padding, bottom);
+    @include padding($hover-padding);
+  }
+
+  // setting content element
+  &-content {
+    position: absolute;
+    @include position($padding);
+    @include size-wh($width, $height);
+    @include transition(all 300ms);
+  }
+  &:hover > &-content {
+    @include position($hover-padding);
+    @include size-wh($hover-width, $hover-height);
+  }
+}
+
+@mixin animation-hover-extension-radius(
+  $parent-width,
+  $parent-height,
+  $width,
+  $height
+) {
+  $options: (
+    width: $parent-width,
+    height: $parent-height,
+  );
+  @include animation-hover-extension($width, $height, $options);
+  // コンテンツ
+  &-content {
+    border-radius: $height / 2;
+  }
+  &:hover > &-content {
+    border-radius: $parent-height / 2;
+  }
+}
+
+
+@mixin animation-hover-inner-extension(
+  $width,
+  $height,
+  $hover-width,
+  $hover-height
+) {
+  // 親要素
+  position: relative;
+  overflow: hidden;
+  @include size-wh($width, $height);
+  @include transition(all 300ms);
+
+  // コンテンツ
+  &-content {
+    position: absolute;
+    @include pos-lt(0, 0);
+    @include size-wh($width, $height);
+    @include transition(all 300ms);
+  }
+  &:hover > &-content {
+    @include pos-lt(($width - $hover-width) / 2, ($height - $hover-height) / 2);
+    @include size-wh($hover-width, $hover-height);
+  }
+}

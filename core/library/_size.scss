@@ -1,0 +1,22 @@
+// width x height
+@mixin size-wh($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin size-square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin size-circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+}
+
+@mixin size-chamfer($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: $height / 2;
+}
