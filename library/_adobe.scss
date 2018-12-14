@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+////////////////////////////////////////////
+// Adobeのフォントサイズから自動で各種設定
+// $font-size：フォントサイズ
+// $line-height：行送り
+// $tracking：トラッキング
+////////////////////////////////////////////
+@mixin adobe-font-sizes($font-size, $line-height, $tracking) {
+  font-size: $font-size;
+  line-height: $line-height;
+  letter-spacing: ($font-size * $tracking) / 100;
+}
