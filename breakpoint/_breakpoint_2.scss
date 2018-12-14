@@ -2,3 +2,5 @@ $breakpoints: (
 	'pc' : 'screen and (min-width: 768px)',
 	'sp' : 'screen and (max-width: 767px)',
 ) !default;
+
+@import 'mq';

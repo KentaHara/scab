@@ -1,0 +1,7 @@
+$breakpoints: (
+	'pc' : 'screen and (min-width: 600px)',
+	'spl': 'screen and (min-width: 480px) and (max-width:599px)',
+	'sp' : 'screen and (max-width: 479px)',
+) !default;
+
+@import 'mq';
