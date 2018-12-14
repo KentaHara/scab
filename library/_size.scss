@@ -1,10 +1,16 @@
 // width x height
 @mixin size-wh($width, $height) {
-	width: $width;
-	height: $height;
+  width: $width;
+  height: $height;
 }
 
-@mixin size-rect($size) {
-	width: $size;
-	height: $size;
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin circle($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
 }
