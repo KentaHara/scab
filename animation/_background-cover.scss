@@ -5,17 +5,30 @@
 ////////////////////////////////////////////
 @mixin anmation-background-radius-cover($size, $color, $opacity: 1) {
   &-cover {
-      position: relative;
-      @include size-circle(0);
-      @include transition(all 300ms);
-      top: 50%;
-      left: 50%;
+    position: relative;
+    opacity: $opacity;
+    background-color: $color;
+    @include transition(all 300ms);
+    @include size-circle(0);
+    @include pos-tl(50%, 50%);
   }
   &:hover > &-cover {
-      @include size-circle($size);
-      border-radius: $size;
-      background-color: $color;
-      opacity: $opacity;
-      @include pos-tl(0, 0);
+    @include size-circle($size);
+    @include pos-tl(0, 0);
+  }
+}
+
+@mixin anmation-background-radius-cover-out($size, $color, $opacity: 1) {
+  &-cover {
+    position: relative;
+    opacity: $opacity;
+    background-color: $color;
+    @include transition(all 300ms);
+    @include size-circle($size);
+    @include pos-tl(0, 0);
+  }
+  &:hover > &-cover {
+    @include size-circle(0);
+    @include pos-tl(50%, 50%);
   }
 }
