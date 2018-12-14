@@ -1,0 +1,15 @@
+
+@mixin background-cover-image($src) {
+    background-image: url($src);
+    background-size: cover;
+}
+@mixin background-contain-image($src) {
+    background-image: url($src);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+@mixin background-contain-repeat-image($src) {
+    background-image: url($src);
+    background-size: contain;
+}

@@ -1,0 +1,31 @@
+$sp-design-width: 375px;
+$pc-design-width: 1280px;
+
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+		@return $number / ($number * 0 + 1);
+	}
+	@return $number;
+}
+
+@function cSP($value) {
+	@return (strip-unit($value) * 100vw) / strip-unit($sp-design-width);
+}
+
+@function cPC($value) {
+	@return (strip-unit($value) * 100vw) / strip-unit($pc-design-width);
+}
+
+
+@function resize-pc-x($value) {
+	@return (strip-unit($value) * 100vw) / strip-unit($pc-design-width);
+}
+
+@function cSPOne($value) {
+	$v: (strip-unit($value) * 100vw) / strip-unit($sp-design-width);
+	// Androidの最小表示が0.28vwあたりなので
+	@if $v >= 0.28vw {
+		@return $v;
+	}
+	@return 0.28vw;
+}

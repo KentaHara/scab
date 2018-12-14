@@ -1,0 +1,16 @@
+@mixin ballon-bottom-radius( $color , $width, $height, $arrow-width, $arrow-height ) {
+    position: relative;
+    @include size-wh($width, $height);
+    background-color: $color;
+    border-radius: $height / 2;
+    &:before {
+        content: "";
+        position: relative;
+        top: $height + $arrow-height;
+        // 横幅
+        border: $arrow-width / 2 solid transparent;
+        // 縦幅
+        border-top: $arrow-height * 1.1 solid $color;
+        left: $width / 2 - $arrow-width / 2;
+    }
+}
