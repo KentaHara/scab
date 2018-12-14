@@ -9,5 +9,5 @@
 @mixin adobe-font-sizes($font-size, $line-height, $tracking) {
   font-size: $font-size;
   line-height: $line-height;
-  letter-spacing: ($font-size * $tracking) / 100;
+  letter-spacing: ($font-size * $tracking) / 1000;
 }
