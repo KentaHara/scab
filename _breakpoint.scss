@@ -1,0 +1,22 @@
+
+@mixin breakpoint-2 {
+  $breakpoints: (
+  	'pc' : 'screen and (min-width: 768px)',
+  	'sp' : 'screen and (max-width: 767px)',
+  ) !default;
+}
+
+@mixin breakpoint-3 {
+  $breakpoints: (
+    'pc' : 'screen and (min-width: 600px)',
+    'spl': 'screen and (min-width: 480px) and (max-width:599px)',
+    'sp' : 'screen and (max-width: 479px)',
+  ) !default;
+}
+
+
+@mixin mq($breakpoint: sp) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
