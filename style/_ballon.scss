@@ -22,5 +22,5 @@
 // 角丸の下方向吹き出し
 @mixin ballon-bottom-radius( $color , $width, $height, $arrow-width, $arrow-height ) {
   border-radius: $height / 2;
-  @mixin ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height )
+  @mixin ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height );
 }
