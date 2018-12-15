@@ -32,3 +32,27 @@
     border-radius: $parent-height / 2;
   }
 }
+@mixin animation-hover-inner-extension(
+  $width,
+  $height,
+  $hover-width,
+  $hover-height
+) {
+  // 親要素
+  position: relative;
+  overflow: hidden;
+  @include size-wh($width, $height);
+  @include transition(all 300ms);
+
+  // コンテンツ
+  &-content {
+    position: absolute;
+    @include pos-lt(0, 0);
+    @include size-wh($width, $height);
+    @include transition(all 300ms);
+  }
+  &:hover > &-content {
+    @include pos-lt(($width - $hover-width) / 2, ($height - $hover-height) / 2);
+    @include size-wh($hover-width, $hover-height);
+  }
+}
