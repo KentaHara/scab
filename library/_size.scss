@@ -14,3 +14,9 @@
   height: $size;
   border-radius: $size / 2;
 }
+
+@mixin size-chamfer($width, $height) {
+  width: $width;
+  height: $height;
+  border-radius: $height / 2;
+}
