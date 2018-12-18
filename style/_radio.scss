@@ -1,3 +1,14 @@
+////////////////////////////////////////////////////
+// topの値により、上下を指定してください。
+// label {
+//     span:before {
+//         top: 8.5px;
+//     }
+//     span:after {
+//         top: 13.5px;
+//     }
+// }
+////////////////////////////////////////////////////
 @mixin style-custom-simple-radio-wp-contact-form-7(
   $font-size: 16px,
   $line-height: 27px,
@@ -24,7 +35,7 @@
   input[type=radio] + span:before {
     content: "";
     position: absolute;
-    @include pos-lt(0, $outer-radio-top-and-down-position);
+    left: 0;
     background-color: $radio-color;
     width: $radio-size;
     height: $radio-size;
@@ -34,7 +45,7 @@
     content: "";
     position: absolute;
     $left: ($radio-size - $inner-radio-size) / 2;
-    @include pos-lt($left , $inner-radio-top-and-down-position);
+    left: $left;
     width: $inner-radio-size;
     height: $inner-radio-size;
     border-radius: $inner-radio-size / 2;
