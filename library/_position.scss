@@ -51,3 +51,11 @@
 @mixin pos-rb($right, $bottom) {
   @include pos-br($bottom, $right);
 }
+
+@mixin position-center {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
