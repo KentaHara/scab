@@ -8,8 +8,7 @@
     height: $height;
     line-height: $height;
   }
-  &:before {
-    content: "ファイルを選択";
+  &-button {
     cursor: pointer;
     position: absolute;
     text-align: center;
@@ -18,8 +17,7 @@
     background-color: #b4b4b4;
     color: #f3f3f3;
   }
-  &:after {
-    content: "選択されていません";
+  &-str {
     position: absolute;
     left: 180px;
   }
