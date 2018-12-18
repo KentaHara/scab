@@ -1,0 +1,45 @@
+@mixin style-custom-simple-radio-wp-contact-form-7(
+  $font-size: 16px,
+  $line-height: 27px,
+  $padding: 3px,
+  $radio-size: 22px,
+  $radio-color: #f4f4f4,
+  $inner-radio-size: 12px,
+  $inner-radio-color: #000
+) {
+  $span-up-and-down-padding: ($line-height - $font-size) / 2;
+  $outer-radio-top-and-down-position: ($line-height - $radio-size) / 2;
+  $inner-radio-top-and-down-position: ($line-height - $inner-radio-size) / 2;
+
+  input[type=radio] {
+    display: none;
+  }
+  input[type=radio] + span {
+    padding-left: $radio-size + $padding;
+    position: relative;
+    font-size: $font-size;
+    padding-top: $span-up-and-down-padding;
+    padding-bottom: $span-up-and-down-padding;
+  }
+  input[type=radio] + span:before {
+    content: "";
+    position: absolute;
+    @include pos-lt(0, $outer-radio-top-and-down-position);
+    background-color: $radio-color;
+    width: $radio-size;
+    height: $radio-size;
+    border-radius: $radio-size / 2;
+  }
+  input[type=radio] + span:after {
+    content: "";
+    position: absolute;
+    $left: ($radio-size - $inner-radio-size) / 2;
+    @include pos-lt($left , $inner-radio-top-and-down-position);
+    width: $inner-radio-size;
+    height: $inner-radio-size;
+    border-radius: $inner-radio-size / 2;
+  }
+  input[type=radio]:checked + span:after {
+    background-color: $inner-radio-color;
+  }
+}
