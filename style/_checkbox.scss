@@ -1,0 +1,54 @@
+@mixin style-checkbox-simple-wpcf7(
+  $height: 100px,
+  $str-space: 10px,
+  $font-size: 20px,
+  $checkbox-size: 30px,
+  $checkbox-border: solid #000 2px,
+  $check-short-length: 20px,
+  $check-short-border: solid #fa5504 6px,
+  $check-long-length: 30px,
+  $check-long-border: solid #fa5504 6px
+) {
+  $top-padding: (($height - $font-size) / 2);
+  $checkbox-top: (($height / 2) - ($checkbox-size / 2));
+
+  position: relative;
+  span {
+    display: inline-block;
+    line-height: $height;
+    font-size: $font-size;
+  }
+  label {
+    padding-left: ($checkbox-size + $str-space);
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+  input[type=checkbox] + span:before {
+    content: "";
+    position: absolute;
+    top: $checkbox-top;
+    left: 0;
+    width: $checkbox-size;
+    height: $checkbox-size;
+    border: $checkbox-border;
+  }
+  input[type=checkbox]:checked + span:after {
+    content: "";
+    position: absolute;
+    $check-padding-top: ($checkbox-size - $check-long-length) / 2;
+    top: $checkbox-top + $check-padding-top;
+    left: (($checkbox-size - $check-short-length) / 2);
+    // check-short
+    width: $check-short-length;
+    border-bottom: $check-short-border;
+    // check-long
+    height: $check-long-length;
+    border-right: $check-long-border;
+    // center center
+    transform-origin: ($check-short-length / 2) ($check-long-length / 2);
+    // 上へのずらし -> 回転
+    transform: translateY(-1 * ($checkbox-size / 3)) rotate(35deg);
+  }
+}
