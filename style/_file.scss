@@ -1,0 +1,26 @@
+@mixin style-file-simple-wpcf7($height: 35px) {
+  width: 100%;
+  height: $height;
+  input[type="file"] {
+    display: none;
+  }
+  &:before, &:after {
+    height: $height;
+    line-height: $height;
+  }
+  &:before {
+    content: "ファイルを選択";
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    width: 144px;
+    border-radius: 5px;
+    background-color: #b4b4b4;
+    color: #f3f3f3;
+  }
+  &:after {
+    content: "選択されていません";
+    position: absolute;
+    left: 180px;
+  }
+}
