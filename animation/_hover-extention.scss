@@ -1,4 +1,4 @@
-@mixin animation-hover-extension-radius(
+@mixin animation-hover-extension(
   $parent-width,
   $parent-height,
   $width,
@@ -23,15 +23,31 @@
     position: absolute;
     @include pos-lt($margin-left-right, $margin-top-buttom);
     @include size-wh($width, $height);
-    border-radius: $height / 2;
     @include transition(all 300ms);
   }
   &:hover > &-content {
     @include pos-lt(0, 0);
     @include size-wh($parent-width, $parent-height);
+  }
+}
+
+@mixin animation-hover-extension-radius(
+  $parent-width,
+  $parent-height,
+  $width,
+  $height
+) {
+  @include animation-hover-extension($parent-width, $parent-height, $width, $height);
+  // コンテンツ
+  &-content {
+    border-radius: $height / 2;
+  }
+  &:hover > &-content {
     border-radius: $parent-height / 2;
   }
 }
+
+
 @mixin animation-hover-inner-extension(
   $width,
   $height,
