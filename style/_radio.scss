@@ -32,7 +32,7 @@
     padding-top: $span-up-and-down-padding;
     padding-bottom: $span-up-and-down-padding;
   }
-  input[type=radio] + span:before {
+  input[type=radio] + span:before, input[type=radio] + input[type=hidden] + span:before {
     content: "";
     position: absolute;
     left: 0;
@@ -41,7 +41,7 @@
     height: $radio-size;
     border-radius: $radio-size / 2;
   }
-  input[type=radio] + span:after {
+  input[type=radio] + span:after, input[type=radio] + input[type=hidden] + span:after {
     content: "";
     position: absolute;
     $left: ($radio-size - $inner-radio-size) / 2;
@@ -50,7 +50,7 @@
     height: $inner-radio-size;
     border-radius: $inner-radio-size / 2;
   }
-  input[type=radio]:checked + span:after {
+  input[type=radio]:checked + span:after, input[type=radio]:checked + input[type=hidden] + span:after {
     background-color: $inner-radio-color;
   }
 }
