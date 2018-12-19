@@ -25,7 +25,7 @@
   input[type=checkbox] {
     display: none;
   }
-  input[type=checkbox] + span:before {
+  input[type=checkbox] + span:before, input[type=checkbox] + input[type=hidden] + span:before {
     content: "";
     position: absolute;
     top: $checkbox-top;
@@ -34,7 +34,7 @@
     height: $checkbox-size;
     border: $checkbox-border;
   }
-  input[type=checkbox]:checked + span:after {
+  input[type=checkbox]:checked + span:after , input[type=checkbox]:checked + input[type=hidden] + span:after{
     content: "";
     position: absolute;
     $check-padding-top: ($checkbox-size - $check-long-length) / 2;
