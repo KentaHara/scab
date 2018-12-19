@@ -1,0 +1,11 @@
+//////////////////////////////////////////
+// calc-ratio-size
+//   A:B = A':B'
+//    $base1:    A
+//    $base2:    B
+//    $convert1: A'
+// @return B'
+//////////////////////////////////////////
+@function calc-ratio-size($base1, $base2, $convert1) {
+  @return ($base2 * $convert1) / $base2;
+}
