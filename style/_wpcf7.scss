@@ -1,0 +1,81 @@
+
+/// @example
+/// $options: (
+///   span: (
+///     height: 27px,
+///     font-size: 16px,
+///     distance-to-radio: 5px,
+///     distance-to-other: 5px,
+///   ),
+///   outer-style: (
+///     size: 22px,
+///     color: #f4f4f4,
+///   ),
+///   inner-style: (
+///     size: 12px,
+///     color: #000,
+///   )
+/// );
+/// @include style-wpcf7-radio($options);
+@mixin style-wpcf7-radio($options: ()) {
+
+  // span options
+  $span-options: map-get-to($options, span, ());
+  $span-height: map-get-to($span-options, height, 27px);
+  $span-font-size: map-get-to($span-options, font-size, 16px);
+  $span-distance-to-radio: map-get-to($span-options, distance-to-radio, 5px);
+  $span-distance-to-other: map-get-to($span-options, distance-to-other, 5px);
+
+  // outer radio options
+  $outer-options: map-get-to($options, outer-style, ());
+  $outer-size: map-get-to($outer-options, size, 22px);
+  $outer-color: map-get-to($outer-options, color, #f4f4f4);
+  $outer-left: ($outer-size + $span-distance-to-radio) * -1;
+  $outer-top: ($span-height - $outer-size) / 2;
+
+  // inner radio options
+  $inner-options: map-get-to($options, inner-style, ());
+  $inner-size: map-get-to($inner-options, size, 12px);
+  $inner-color: map-get-to($inner-options, color, #000);
+  $inner-left: $outer-left + (($outer-size - $inner-size) / 2);
+  $inner-top: $outer-top + (($outer-size - $inner-size) / 2);
+
+
+  input[type=radio] {
+    display: none;
+  }
+
+  .wpcf7-list-item:nth-child(1) {
+    margin: 0;
+  }
+
+  // span style
+  input[type=radio] + span, input[type=radio] + input[type=hidden] + span {
+    position: relative;
+    display: inline-block;
+    line-height: $span-height;
+    font-size: $span-font-size;
+  }
+
+  // outer radio style
+  label {
+    height: $span-height;
+    padding-left: ($outer-size + $span-distance-to-radio);
+  }
+  input[type=radio] + span:before, input[type=radio] + input[type=hidden] + span:before {
+    content: "";
+    position: absolute;
+    @include pos-lt($outer-left, $outer-top);
+    @include size-circle($outer-size);
+    background-color: $outer-color;
+  }
+
+  // inner radio style
+  input[type=radio]:checked + span:after, input[type=radio]:checked + input[type=hidden] + span:after {
+    content: "";
+    position: absolute;
+    @include pos-lt($inner-left, $inner-top);
+    @include size-circle($inner-size);
+    background-color: $inner-color;
+  }
+}
