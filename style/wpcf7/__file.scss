@@ -1,0 +1,56 @@
+/// @example
+/// $options: (
+///   button: (
+///     height: 35px,
+///     width: 144px,
+///     border-radius: 5px,
+///     background-color: #b4b4b4,
+///     font-size: 16px,
+///     color: #f3f3f3,
+///   ),
+///   str: (
+///     font-size: 16px,
+///     distance-to-button: 16px,
+///   ),
+/// );
+/// @include style-wpcf7-file($options)
+
+@mixin style-wpcf7-file($options) {
+
+  // button options
+  $button-options: map-get-to($options, button, ());
+  $button-height: map-get-to($button-options, height, 35px);
+  $button-width: map-get-to($button-options, width, 144px);
+  $button-border-radius: map-get-to($button-options, border-radius, 0);
+  $button-background-color: map-get-to($button-options, background-color, #b4b4b4);
+  $button-font-size: map-get-to($button-options, font-size, 16px);
+  $button-color: map-get-to($button-options, color, #f3f3f3);
+
+  // str options
+  $str-options: map-get-to($options, str, ());
+  $str-font-size: map-get-to($str-options, font-size, 16px);
+  $str-distance-to-button: map-get-to($str-options, distance-to-button, 16px);
+
+  position: relative;
+  width: 100%;
+  height: $button-height;
+  input[type="file"] {
+    display: none;
+  }
+  &-button {
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    height: $button-height;
+    width: $button-width;
+    border-radius: $button-border-radius;
+    background-color: $button-background-color;
+    font-size: $button-font-size;
+    color: $button-color;
+  }
+  &-str {
+    position: absolute;
+    left: $button-width + $str-distance-to-button;
+    font-size: $str-font-size;
+  }
+}
