@@ -22,9 +22,5 @@
 // 角丸の下方向吹き出し
 @mixin ballon-bottom-radius( $color , $width, $height, $arrow-width, $arrow-height ) {
   border-radius: $height / 2;
-<<<<<<< HEAD:style/_ballon.scss
-  @mixin ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height )
-=======
   @include ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height );
->>>>>>> f7a97fd... v0.0.1:core/style/_ballon.scss
 }
