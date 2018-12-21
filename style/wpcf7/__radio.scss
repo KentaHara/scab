@@ -6,11 +6,11 @@
 ///     distance-to-radio: 5px,
 ///     distance-to-other: 5px,
 ///   ),
-///   outer-style: (
+///   outer: (
 ///     size: 22px,
 ///     color: #f4f4f4,
 ///   ),
-///   inner-style: (
+///   inner: (
 ///     size: 12px,
 ///     color: #000,
 ///   )
@@ -26,14 +26,14 @@
   $span-distance-to-other: map-get-to($span-options, distance-to-other, 5px);
 
   // outer radio options
-  $outer-options: map-get-to($options, outer-style, ());
+  $outer-options: map-get-to($options, outer, ());
   $outer-size: map-get-to($outer-options, size, 22px);
   $outer-color: map-get-to($outer-options, color, #f4f4f4);
   $outer-left: ($outer-size + $span-distance-to-radio) * -1;
   $outer-top: ($span-height - $outer-size) / 2;
 
   // inner radio options
-  $inner-options: map-get-to($options, inner-style, ());
+  $inner-options: map-get-to($options, inner, ());
   $inner-size: map-get-to($inner-options, size, 12px);
   $inner-color: map-get-to($inner-options, color, #000);
   $inner-left: $outer-left + (($outer-size - $inner-size) / 2);
