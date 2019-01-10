@@ -12,34 +12,36 @@
 }
 
 @mixin position($position) {
-  @each $m in top,bottom,left,right {
+  @each $m in position,top,bottom,left,right {
     @if map-has-key($position, $m) {
-      #{$m}: map-get($position, $m);
+      @if map-get($position, $m) != null {
+        #{$m}: map-get($position, $m);
+      }
     }
   }
 }
 
-@mixin position-tl($m1, $m2) { @include position((top: $m1, left: $m2));}
-@mixin position-lt($m1, $m2) { @include position((top: $m2, left: $m1,));}
-@mixin position-tr($m1, $m2) { @include position((top: $m1, right: $m2,));}
-@mixin position-rt($m1, $m2) { @include position((top: $m2, right: $m1,));}
-@mixin position-tb($m1, $m2) { @include position((top: $m1, bottom: $m2,));}
-@mixin position-bt($m1, $m2) { @include position((top: $m2, bottom: $m1,));}
-@mixin position-bl($m1, $m2) { @include position((bottom: $m1, left: $m2,));}
-@mixin position-lb($m1, $m2) { @include position((bottom: $m2, left: $m1,));}
-@mixin position-br($m1, $m2) { @include position((bottom: $m1, right: $m2,));}
-@mixin position-rb($m1, $m2) { @include position((bottom: $m2, right: $m1,));}
-@mixin position-lr($m1, $m2) { @include position((left: $m1, right: $m2,));}
-@mixin position-rl($m1, $m2) { @include position((left: $m2, right: $m1,));}
-@mixin pos-tl($m1, $m2) { @include position((top: $m1, left: $m2));}
-@mixin pos-lt($m1, $m2) { @include position((top: $m2, left: $m1,));}
-@mixin pos-tr($m1, $m2) { @include position((top: $m1, right: $m2,));}
-@mixin pos-rt($m1, $m2) { @include position((top: $m2, right: $m1,));}
-@mixin pos-tb($m1, $m2) { @include position((top: $m1, bottom: $m2,));}
-@mixin pos-bt($m1, $m2) { @include position((top: $m2, bottom: $m1,));}
-@mixin pos-bl($m1, $m2) { @include position((bottom: $m1, left: $m2,));}
-@mixin pos-lb($m1, $m2) { @include position((bottom: $m2, left: $m1,));}
-@mixin pos-br($m1, $m2) { @include position((bottom: $m1, right: $m2,));}
-@mixin pos-rb($m1, $m2) { @include position((bottom: $m2, right: $m1,));}
-@mixin pos-lr($m1, $m2) { @include position((left: $m1, right: $m2,));}
-@mixin pos-rl($m1, $m2) { @include position((left: $m2, right: $m1,));}
+@mixin position-tl($m1, $m2, $p: null) { @include position((top: $m1, left: $m2, position: $p));}
+@mixin position-lt($m1, $m2, $p: null) { @include position((top: $m2, left: $m1, position: $p));}
+@mixin position-tr($m1, $m2, $p: null) { @include position((top: $m1, right: $m2, position: $p));}
+@mixin position-rt($m1, $m2, $p: null) { @include position((top: $m2, right: $m1, position: $p));}
+@mixin position-tb($m1, $m2, $p: null) { @include position((top: $m1, bottom: $m2, position: $p));}
+@mixin position-bt($m1, $m2, $p: null) { @include position((top: $m2, bottom: $m1, position: $p));}
+@mixin position-bl($m1, $m2, $p: null) { @include position((bottom: $m1, left: $m2, position: $p));}
+@mixin position-lb($m1, $m2, $p: null) { @include position((bottom: $m2, left: $m1, position: $p));}
+@mixin position-br($m1, $m2, $p: null) { @include position((bottom: $m1, right: $m2, position: $p));}
+@mixin position-rb($m1, $m2, $p: null) { @include position((bottom: $m2, right: $m1, position: $p));}
+@mixin position-lr($m1, $m2, $p: null) { @include position((left: $m1, right: $m2, position: $p));}
+@mixin position-rl($m1, $m2, $p: null) { @include position((left: $m2, right: $m1, position: $p));}
+@mixin pos-tl($m1, $m2, $p: null) { @include position((top: $m1, left: $m2,  position: $p));}
+@mixin pos-lt($m1, $m2, $p: null) { @include position((top: $m2, left: $m1, position: $p));}
+@mixin pos-tr($m1, $m2, $p: null) { @include position((top: $m1, right: $m2, position: $p));}
+@mixin pos-rt($m1, $m2, $p: null) { @include position((top: $m2, right: $m1, position: $p));}
+@mixin pos-tb($m1, $m2, $p: null) { @include position((top: $m1, bottom: $m2, position: $p));}
+@mixin pos-bt($m1, $m2, $p: null) { @include position((top: $m2, bottom: $m1, position: $p));}
+@mixin pos-bl($m1, $m2, $p: null) { @include position((bottom: $m1, left: $m2, position: $p));}
+@mixin pos-lb($m1, $m2, $p: null) { @include position((bottom: $m2, left: $m1, position: $p));}
+@mixin pos-br($m1, $m2, $p: null) { @include position((bottom: $m1, right: $m2, position: $p));}
+@mixin pos-rb($m1, $m2, $p: null) { @include position((bottom: $m2, right: $m1, position: $p));}
+@mixin pos-lr($m1, $m2, $p: null) { @include position((left: $m1, right: $m2, position: $p));}
+@mixin pos-rl($m1, $m2, $p: null) { @include position((left: $m2, right: $m1, position: $p));}
