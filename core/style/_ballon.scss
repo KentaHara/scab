@@ -24,3 +24,92 @@
   border-radius: $height / 2;
   @include ballon-bottom( $color , $width, $height, $arrow-width, $arrow-height );
 }
+
+/// @example
+/// $options: (
+///   color: #555,
+///   ballon: (
+///     width: 14px,
+///     height: 20px,
+///     radius: 6px,
+///   ),
+///   arrow: (
+///     origin: left top,
+///     width: 14px,
+///     height: 20px,
+///   ),
+/// );
+/// @include ballon($options);
+@mixin ballon( $options: () ) {
+  // color option
+  $color: map-get-to($options, color, #555);
+
+  // ballon options
+  $ballon-options: map-get-to($options, ballon, ());
+  $ballon-radius: map-get-to($ballon-options, radius, 0);
+  $ballon-width: map-get-to($ballon-options, width, 20px);
+  $ballon-height: map-get-to($ballon-options, height, 14px);
+
+  // arrow options
+  $arrow-options: map-get-to($options, arrow, ());
+  $arrow-origin: map-get-to($arrow-options, origin, left top);
+  $arrow-width: map-get-to($arrow-options, width, 14px);
+  $arrow-height: map-get-to($arrow-options, height, 20px);
+
+  // ballon
+  position: relative;
+  @include size-wh($ballon-width, $ballon-height);
+  background-color: $color;
+  border-radius: $ballon-radius;
+
+  // arrow
+  &:before {
+    content: "";
+    position: absolute;
+
+    // TODO: Need to mimic transform-origin
+    //
+    // o1:x-offset-keyword [up, down]
+    // o2:y-offset-keyword
+    //    - o1:up, down    [right, center, left]
+    $o1: nth($arrow-origin, 1);
+    $o2: nth($arrow-origin, 2);
+
+    // arrow：up
+    @if $o1 == up {
+      $width: ($arrow-width / 2);
+      border: $width solid transparent;
+      border-bottom: $arrow-height solid $color;
+      $adjusted-height: "#{$width} + #{$arrow-height}";
+      top: calc((#{$adjusted-height}) * -1);
+
+      @if $o2 == left {
+        left: $ballon-radius;
+      }
+      @if $o2 == right {
+        left: $ballon-width - $arrow-width - ($ballon-radius);
+      }
+      @if $o2 == center {
+        left: ($ballon-width/2) - ($arrow-width / 2);
+      }
+    }
+    // arrow：down
+    @if $o1 == down {
+      $width: ($arrow-width / 2);
+      border: ($arrow-width / 2) solid transparent;
+      border-top: $arrow-height solid $color;
+      $adjusted-height: "#{$width} + #{$arrow-height}";
+      bottom: calc((#{$adjusted-height}) * -1);
+
+      @if $o2 == left {
+        left: $ballon-radius;
+      }
+      @if $o2 == right {
+        left: $ballon-width - $arrow-width - ($ballon-radius);
+      }
+      @if $o2 == center {
+        left: ($ballon-width/2) - ($arrow-width / 2);
+      }
+    }
+  }
+}
